@@ -244,55 +244,25 @@ const names = users.map((user) => {
 
 console.log("Names", names);
 
-function paintDOM(users) {
-    let body = ``;
+// function paintDOM(users) {
+//     let body = ``;
 
-    const tagToUpdate = document.getElementById("root");
-    console.log("tagToUpdate", tagToUpdate);
+//     const tagToUpdate = document.getElementById("root");
+//     console.log("tagToUpdate", tagToUpdate);
 
-    for (let i = 0; i < users.length; i++) {
-        body += `
-        <div class="card">
-            <h1>${users[i].name}</h1>
-        </div>
-        <h1 class="title">${users[i].username}</h1>
-        `;
-    }
-    tagToUpdate.innerHTML = body;
-    console.log("Por el amor de Dios, que esto funcioneeeee");
-}
+//     for (let i = 0; i < users.length; i++) {
+//         body += `
+//         <div class="card">
+//             <h1>${users[i].name}</h1>
+//         </div>
+//         <h1 class="title">${users[i].username}</h1>
+//         `;
+//     }
+//     tagToUpdate.innerHTML = body;
+//     console.log("Por el amor de Dios, que esto funcioneeeee");
+// }
 
-paintDOM(users);
-
-// const date = "2022-01-01";
-const dateToParse = Date.parse(date);
-
-console.log("date", date);
-console.log("dateToParse", dateToParse);
-// 763 257 600 000 - Sin la hora - timestamp
-// 763 298 640 000 - Con la hora
-
-// Fecha a convertir -- OK
-// Split -- OK
-// Convertir a instancia de Date
-// Convertir a timestamp gettime
-
-const dateToCompare = "01-01-2022";
-console.log("dateToCompare", dateToCompare);
-
-const dateSplit = dateToCompare.split("-");
-console.log("dateSplit", dateSplit);
-
-// dateToCompareParsed tomará el valor de la fecha a comparar, usando el año en el primer parametro, el mes en el segundo y el día en el tercero. e.g new Date(2022, 01, 01)
-const dateToCompareParsed = new Date(
-    dateSplit[2],
-    dateSplit[1] - 1,
-    dateSplit[0]
-);
-console.log("dateToCompareParsed", dateToCompareParsed);
-
-const dateToTimestamp = dateToCompareParsed.getTime();
-console.log("dateToTimestamp", dateToTimestamp);
+// paintDOM(users);
 
 const countries = [
     {
@@ -25743,3 +25713,64 @@ const countries = [
         capitalInfo: { latlng: [4.71, -74.07] },
     },
 ];
+
+function paintDOMwithCountries(countries) {
+    console.log("countries", countries);
+
+    const tagToUpdate = document.getElementById("countries");
+    console.log("tagToUpdate", tagToUpdate);
+
+    // for (let i = 0; i < countries.length; i++) {
+    //     body += `
+    //     <div class="card">
+    //         <h1>${countries[i].name.official}</h1>
+    //     </div>
+    //     `;
+    // }
+    // tagToUpdate.innerHTML = body;
+    // console.log("Por el amor de Dios, que esto funcioneeeee");
+
+    const fragment = document.createDocumentFragment();
+
+    countries.forEach((country) => {
+        // console.log("country", country);
+        const title = document.createElement("h1");
+        title.textContent = country.name.official;
+        // console.log("title", title);
+        fragment.appendChild(title);
+    });
+    tagToUpdate.appendChild(fragment);
+    console.log("fragment", fragment);
+}
+
+paintDOMwithCountries(countries);
+
+// const date = "2022-01-01";
+const dateToParse = Date.parse(date);
+
+console.log("date", date);
+console.log("dateToParse", dateToParse);
+// 763 257 600 000 - Sin la hora - timestamp
+// 763 298 640 000 - Con la hora
+
+// Fecha a convertir -- OK
+// Split -- OK
+// Convertir a instancia de Date
+// Convertir a timestamp gettime
+
+const dateToCompare = "01-01-2022";
+console.log("dateToCompare", dateToCompare);
+
+const dateSplit = dateToCompare.split("-");
+console.log("dateSplit", dateSplit);
+
+// dateToCompareParsed tomará el valor de la fecha a comparar, usando el año en el primer parametro, el mes en el segundo y el día en el tercero. e.g new Date(2022, 01, 01)
+const dateToCompareParsed = new Date(
+    dateSplit[2],
+    dateSplit[1] - 1,
+    dateSplit[0]
+);
+console.log("dateToCompareParsed", dateToCompareParsed);
+
+const dateToTimestamp = dateToCompareParsed.getTime();
+console.log("dateToTimestamp", dateToTimestamp);
