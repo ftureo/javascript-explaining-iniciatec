@@ -25745,7 +25745,7 @@ function paintDOMwithCountries(countries) {
 
 paintDOMwithCountries(countries);
 
-// const date = "2022-01-01";
+const date = "2022-01-01";
 const dateToParse = Date.parse(date);
 
 console.log("date", date);
@@ -25774,3 +25774,47 @@ console.log("dateToCompareParsed", dateToCompareParsed);
 
 const dateToTimestamp = dateToCompareParsed.getTime();
 console.log("dateToTimestamp", dateToTimestamp);
+
+
+
+const words = [
+    "spray",
+    "Elephant",
+    "limit",
+    "elite",
+    "exuberant",
+    "destruction",
+    "present",
+    "excellent",
+];
+
+const results = words.filter(word => word.length > 6);
+
+console.log("Results", results)
+
+const resultsWithE = words.filter(
+    (word) => word.length > 6 && word.toLowerCase().startsWith("e")
+);
+console.log("resultsWithE", resultsWithE)
+
+// common name - independent - flags PNG - google Maps
+
+// LAS FUNCIONES DE TIPO FLECHA TIENEN RETORNO IMPLICITO Y EXPLICITO. SI ES IMPLICITO, NO LLEVA LAS LLAVES NI EL RETURN
+const independentCountries = countries.filter(country => country.independent === true);
+
+console.log("independentCountries sin llaves", independentCountries)
+console.log({independentCountries})
+
+
+// Transformamos la información para quedarnos solo con la data que queremos
+const countriesTransformedWithMap = independentCountries.map( (independentCountry) => {
+    const countryTransformed = {
+        countryNameCommon: independentCountry.name.common,
+        isIndependent: independentCountry.independent,
+        countryFlagPNG: independentCountry.flags.png,
+        countryGoogleMaps: independentCountry.maps.googleMaps,
+    };
+    return countryTransformed
+})
+
+console.log({countriesTransformedWithMap})
