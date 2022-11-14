@@ -25818,3 +25818,14 @@ const countriesTransformedWithMap = independentCountries.map( (independentCountr
 })
 
 console.log({countriesTransformedWithMap})
+
+
+const arrayImages = [
+    {   
+        // countryName: "Brazil", TODO: Review...
+        imageURL: "https://www.photos.google.com?q=imagen-brazil"
+    }
+]
+
+// Se recorre el array de información transformada, se hace un spread operator y se crea una nueva key con el mapping de información del arrayImage
+
