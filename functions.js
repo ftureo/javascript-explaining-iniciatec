@@ -93,3 +93,29 @@ const sumWithValidation = (value1, value2) => {
 };
 
 console.log(sumWithValidation(2, "5"));
+
+function aFunction() {
+    return "Hello World";
+}
+
+
+// // Arrow Function con retorno implícito
+// const anArrowFunctionImplicitReturn = () => "Hello World Arrow Function"
+
+// // Arrow Function con retorno explícito
+// const anArrowFunctionExplicitReturn = () => {
+//     return "Hello World Arrow Function"
+// }
+
+// const sumWithArrowFunctionImplicit  = ( value1, value2 ) => value1 + value2
+
+// const sumWithArrowFunctionExplicit = (value1, value2) => {
+//     return value1 + value2;
+// }
+
+
+// console.log("implicit", sumWithArrowFunctionExplicit(2, 5)); // 7
+// console.log(sumWithArrowFunctionImplicit(5, 8)); // 13
+
+// console.log(aFunction());
+// console.log(anArrowFunction());
