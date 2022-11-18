@@ -20,9 +20,52 @@
     </div>
     <div>
         <h1>---------------------------------------------</h1>
+        <h2>REVIEW FOR INPUT TYPES</h2>
         <input type="text" id="input-name" placeholder="Enter your name">
         <h2 id="input-content"></h2>
     </div>
+    <h1>---------------------------------------------</h1>
+    <h2>Form with checkbox</h2>
+    <form>
+        <div>
+            <label for="id-01">Label for ID 01</label>
+            <input type="checkbox" value="id-01" id="id-01" class="inputs-checkbox">
+        </div>
+        <div>
+            <label for="id-02">Label for ID 02</label>
+            <input type="checkbox" value="id-02" id="id-02" class="inputs-checkbox">
+        </div>
+        <div>
+            <label for="id-03">Label for ID 03</label>
+            <input type="checkbox" value="id-03" id="id-03" class="inputs-checkbox">
+        </div>
+        <div>
+            <label for="id-04">Label for ID 04</label>
+            <input type="checkbox" value="id-04" id="id-04" class="inputs-checkbox">
+        </div>
+        <button type="button" id="button-form">Mostrar Data</button>
+    </form>
+    <h3>Selected Values</h3>
+    <ul id="list-items"></ul>
+
+    <div>
+        <h1>Lista de users con buscador</h1>
+        <!-- Acá vamos a poner el buscador -->
+        <!-- Acá armamos una lista con los nombres de los users ✔️ --> 
+        <section>
+            <ul id="user-list"></ul>
+        </section>
+    </div>
+    <div>
+        <h1>Lista de animals con buscador</h1>
+        <!-- Acá vamos a poner el buscador -->
+        <input id="input-search-animal" type="text" placeholder="Busca un animal . . . 🐈">
+        <!-- Acá armamos una lista con los nombres de los animals ✔️ --> 
+        <section>
+            <ul id="animal-list"></ul>
+        </section>
+    </div>
+
 </body>
 <script src="./methods.js"></script>
 <script src="./functions.js"></script>
