@@ -308,18 +308,14 @@ const animals = [
 const inputSearchAnimal = document.getElementById("input-search-animal");
 console.log("inputSearchAnimals", inputSearchAnimal)
 
-inputSearchAnimal.addEventListener("keyup", (event) => {
-    console.log("event", event) // Devuelve todo el evento de la tecla presionada
-    console.log("event.target.value", event.target.value) // Devuelve contenido del input
-    console.log("event.key", event.key) // Devuelve la tecla presionada
-
-})
 
 const animalList = document.getElementById("animal-list");
+
 
 const renderAnimals = () => {
     animals.map((animal) => {
         const animalItem = document.createElement("li");
+        animalItem.classList.add("animal-item");
         animalItem.textContent = animal;
         animalList.appendChild(animalItem);
     });
@@ -327,6 +323,24 @@ const renderAnimals = () => {
 renderAnimals();
 
 
+const animalListItems = document.querySelectorAll(".animal-item");
+console.log("animalListItems", animalListItems);
+inputSearchAnimal.addEventListener("keyup", (event) => {
+    // console.log("event", event) // Devuelve todo el evento de la tecla presionada
+    console.log("event.target.value", event.target.value) // Devuelve contenido del input
+    // console.log("event.key", event.key) // Devuelve la tecla presionada
+    // console.log({ animalListItems }) // Funciona OK ✔️
+    animalListItems.forEach((animalItem) => {
+        // console.log("veamos el animalito", animalItem.textContent) // Funciona OK ✔️
+        animalItem.textContent
+            .toLowerCase()
+            .includes(event.target.value.toLowerCase())
+            ? animalItem.classList.remove("hidden") // Si cae en true la sentencia anterior, ocurre esto
+            : animalItem.classList.add("hidden");  // Si cae en false la sentencia anterior, ocurre esto
+        // SI NO ENCUENTRA RESULTADOS; ESTARÍA RE BUENO MOSTRAR UN MENSAJE EN LA PANTALLA
+        
+    })
+})
 
 
 console.log("Está andando events?")
