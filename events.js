@@ -338,7 +338,6 @@ inputSearchAnimal.addEventListener("keyup", (event) => {
             ? animalItem.classList.remove("hidden") // Si cae en true la sentencia anterior, ocurre esto
             : animalItem.classList.add("hidden");  // Si cae en false la sentencia anterior, ocurre esto
         // SI NO ENCUENTRA RESULTADOS; ESTARÍA RE BUENO MOSTRAR UN MENSAJE EN LA PANTALLA
-        
     })
 })
 
