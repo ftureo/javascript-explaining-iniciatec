@@ -28,17 +28,17 @@
 // }, 1000)
 // Output: 1, 2, 3 - De acuerdo a los tiempos de cada setTimeout()
 
-console.log("1");
-setTimeout(function () {
-    console.log("2");
-}, 5000);
-console.log("3");
-setTimeout(function () {
-    console.log("4");
-    setTimeout(() => {
-        console.log("5");
-    }, 4000);
-}, 2000);
+// console.log("1");
+// setTimeout(function () {
+//     console.log("2");
+// }, 5000);
+// console.log("3");
+// setTimeout(function () {
+//     console.log("4");
+//     setTimeout(() => {
+//         console.log("5");
+//     }, 4000);
+// }, 2000);
 
 // Output: 1, 3, 4, 2
 
@@ -71,7 +71,7 @@ const showDataInDOM = (perrito) => {
 };
 showDataInDOM();
 
-const API_URL_EVENTS = "https://amazing-events.herokuapp.com/api/events";
+// const API_URL_EVENTS = "https://amazing-events.herokuapp.com/api/events";
 
 // const getEvents = async () => {
 //     const response = await fetch(API_URL_EVENTS);
@@ -89,7 +89,7 @@ const API_URL_EVENTS = "https://amazing-events.herokuapp.com/api/events";
 //     eventsInDOM(newData);
 // };
 
-// getEvents();
+// // getEvents();
 
 // const eventsInDOM = (dataEvents) => {
 //Cambiar nombre a newData cuando prueben con la key nueva por cuestiones de semántica
@@ -130,13 +130,130 @@ const API_URL_EVENTS = "https://amazing-events.herokuapp.com/api/events";
 // Option #3 - Utilizando la librería AXIOS + Async / Await
 // Resource: https://axios-http.com/
 
-const getEventsWithAxios = async() => {
-    //Llamamos a la librería y le indicamos el verbo HTTP que queremos utilizar
-    const getDataAxios = await axios.get(API_URL_EVENTS)
-    const dataEvents = getDataAxios.data
-    console.log("getDataAxios", getDataAxios)
-    console.log("dataAxios", dataEvents)
+// const getEventsWithAxios = async() => {
+//     //Llamamos a la librería y le indicamos el verbo HTTP que queremos utilizar
+//     const getDataAxios = await axios.get(API_URL_EVENTS)
+//     const dataEvents = getDataAxios.data
+//     console.log("getDataAxios", getDataAxios)
+//     console.log("dataAxios", dataEvents)
 
+// }
+
+// getEventsWithAxios()
+
+
+
+const API_URL_GET_PRODUCTS = "https://fakestoreapi.com/products"
+
+/**
+ * This function realize a GET request to the API in FakeStoreAPI
+ * @param   no use.
+ * @returns return an array of products.
+ */
+const getProducts = async () => {
+    try{
+        const responseAxios = await axios.get("https://fakestoreapi.com/products");
+        const dataProducts = responseAxios.data
+        console.log("dataProducts", dataProducts)
+        return dataProducts
+    } catch(error){
+        console.log("Error status", error.response.status)
+        if (error.response.status === 404) {
+            alert("La URL consultada parece no estar funcionando")
+        }
+    }
+}
+getProducts()
+
+// Revisar por qué con el console.log() la promesa se resuelve y con el return no
+
+// Example for try/catch/finally
+
+// const functionToFail = null
+
+const someFunction = () => {
+    const gretting = "Hello dev 🐈"    
+    // Intentará resolver este fragmento de código
+    try{
+        console.log("Esto se ejecuta antes de que falle la función")
+        // functionToFail = true
+        console.log("gretting", gretting)
+    } 
+    catch (error){
+        // Si algo falla, ejecutará este fragmento de código
+        console.log("Esto se ejecuta si la función falla")
+        console.log("Error", error)
+        console.log("Error message", error.message)
+        console.log("Error name", error.name)
+        throw new Error("Error personalizado")
+    } 
+    finally{
+        //Ejecutar un fragmento de código al margen de que se ejecute el try o el catch
+        console.log("Esto se ejecuta al final de la función")
+    }
+    console.log("Esto también se va a ejecutar")
 }
 
-getEventsWithAxios()
+someFunction()
+// Este comentario si se va a poder crear
+// Este comentario no se va a poder crear en formatoJSON
+
+const toStringify = {
+    name: "Tuki",
+    age: 2,
+    favouriteFood: "Papas Fritas",
+    isCute: true,
+};
+console.log("toStringify", toStringify);
+
+
+const stringified = JSON.stringify(toStringify)
+console.log("stringified", stringified);
+
+const parsed = JSON.parse(stringified)
+console.log("parsed", parsed);
+
+const productoToPost = {
+    title: "Tuki's toy",
+    price: 100,
+    description: "Tuki's favourite toy",
+    category: "toys",
+    image: "https://images.unsplash.com/photo-1611784997869-8b8b2b2b9f9c?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80",
+};
+
+const postRequestToFakeStore = async() => {
+    // En una request de tipo POST utilizando Fetch, el primer parámetro es la URL a la que queremos hacer la petición y el segundo parámetro es un objeto con las opciones de la petición
+    fetch("https://fakestoreapi.com/products", {
+        // El verbo HTTP que queremos utilizar a través de la key "method"
+        // El content-type de la petición a través de la key "headers"
+        // El body de la petición que contiene los datos que queremos crear a través de la key "body"
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(productoToPost)
+    })
+    .then(response => response.json())
+    .then(data => console.log("data", data))
+}
+postRequestToFakeStore()
+
+
+const usersToPost = {
+    name: "Tuki",
+    job: "Developer",
+}
+const URL_REQRES_POST = "https://reqres.in/api/users"
+const postRequestToReqres = async() => {
+    const response = await fetch(URL_REQRES_POST, {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(usersToPost)
+    })
+    const data = await response.json()
+    console.log("Post a ReqRes", data)
+} 
+
+postRequestToReqres()
