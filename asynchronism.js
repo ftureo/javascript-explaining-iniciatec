@@ -113,7 +113,6 @@ showDataInDOM();
 //     console.log("Tiene perrito?", havePerrito)
 // }
 
-
 // Destructuring - Option #2 - Destruturing in parameter
 // const eventsInDOM = ({ events, currentDate, havePerrito }) => {
 //     // // Esto se puede reemplazar por poner el nombre de las keys dentro del parámetro de la función entre llaves
@@ -141,9 +140,7 @@ showDataInDOM();
 
 // getEventsWithAxios()
 
-
-
-const API_URL_GET_PRODUCTS = "https://fakestoreapi.com/products"
+const API_URL_GET_PRODUCTS = "https://fakestoreapi.com/products";
 
 /**
  * This function realize a GET request to the API in FakeStoreAPI
@@ -151,19 +148,21 @@ const API_URL_GET_PRODUCTS = "https://fakestoreapi.com/products"
  * @returns return an array of products.
  */
 const getProducts = async () => {
-    try{
-        const responseAxios = await axios.get("https://fakestoreapi.com/products");
-        const dataProducts = responseAxios.data
-        console.log("dataProducts", dataProducts)
-        return dataProducts
-    } catch(error){
-        console.log("Error status", error.response.status)
+    try {
+        const responseAxios = await axios.get(
+            "https://fakestoreapi.com/products"
+        );
+        const dataProducts = responseAxios.data;
+        console.log("dataProducts", dataProducts);
+        return dataProducts;
+    } catch (error) {
+        console.log("Error status", error.response.status);
         if (error.response.status === 404) {
-            alert("La URL consultada parece no estar funcionando")
+            alert("La URL consultada parece no estar funcionando");
         }
     }
-}
-getProducts()
+};
+getProducts();
 
 // Revisar por qué con el console.log() la promesa se resuelve y con el return no
 
@@ -172,29 +171,27 @@ getProducts()
 // const functionToFail = null
 
 const someFunction = () => {
-    const gretting = "Hello dev 🐈"    
+    const gretting = "Hello dev 🐈";
     // Intentará resolver este fragmento de código
-    try{
-        console.log("Esto se ejecuta antes de que falle la función")
+    try {
+        console.log("Esto se ejecuta antes de que falle la función");
         // functionToFail = true
-        console.log("gretting", gretting)
-    } 
-    catch (error){
+        console.log("gretting", gretting);
+    } catch (error) {
         // Si algo falla, ejecutará este fragmento de código
-        console.log("Esto se ejecuta si la función falla")
-        console.log("Error", error)
-        console.log("Error message", error.message)
-        console.log("Error name", error.name)
-        throw new Error("Error personalizado")
-    } 
-    finally{
+        console.log("Esto se ejecuta si la función falla");
+        console.log("Error", error);
+        console.log("Error message", error.message);
+        console.log("Error name", error.name);
+        throw new Error("Error personalizado");
+    } finally {
         //Ejecutar un fragmento de código al margen de que se ejecute el try o el catch
-        console.log("Esto se ejecuta al final de la función")
+        console.log("Esto se ejecuta al final de la función");
     }
-    console.log("Esto también se va a ejecutar")
-}
+    console.log("Esto también se va a ejecutar");
+};
 
-someFunction()
+someFunction();
 // Este comentario si se va a poder crear
 // Este comentario no se va a poder crear en formatoJSON
 
@@ -206,11 +203,10 @@ const toStringify = {
 };
 console.log("toStringify", toStringify);
 
-
-const stringified = JSON.stringify(toStringify)
+const stringified = JSON.stringify(toStringify);
 console.log("stringified", stringified);
 
-const parsed = JSON.parse(stringified)
+const parsed = JSON.parse(stringified);
 console.log("parsed", parsed);
 
 const productoToPost = {
@@ -221,7 +217,7 @@ const productoToPost = {
     image: "https://images.unsplash.com/photo-1611784997869-8b8b2b2b9f9c?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80",
 };
 
-const postRequestToFakeStore = async() => {
+const postRequestToFakeStore = async () => {
     // En una request de tipo POST utilizando Fetch, el primer parámetro es la URL a la que queremos hacer la petición y el segundo parámetro es un objeto con las opciones de la petición
     fetch("https://fakestoreapi.com/products", {
         // El verbo HTTP que queremos utilizar a través de la key "method"
@@ -229,31 +225,96 @@ const postRequestToFakeStore = async() => {
         // El body de la petición que contiene los datos que queremos crear a través de la key "body"
         method: "POST",
         headers: {
-            "Content-Type": "application/json"
+            "Content-Type": "application/json",
         },
-        body: JSON.stringify(productoToPost)
+        body: JSON.stringify(productoToPost),
     })
-    .then(response => response.json())
-    .then(data => console.log("data", data))
-}
-postRequestToFakeStore()
-
+        .then((response) => response.json())
+        .then((data) => console.log("data", data));
+};
+postRequestToFakeStore();
 
 const usersToPost = {
     name: "Tuki",
     job: "Developer",
-}
-const URL_REQRES_POST = "https://reqres.in/api/users"
-const postRequestToReqres = async() => {
+};
+const URL_REQRES_POST = "https://reqres.in/api/users";
+const postRequestToReqres = async () => {
     const response = await fetch(URL_REQRES_POST, {
         method: "POST",
         headers: {
-            "Content-Type": "application/json"
+            "Content-Type": "application/json",
         },
-        body: JSON.stringify(usersToPost)
-    })
-    const data = await response.json()
-    console.log("Post a ReqRes", data)
-} 
+        body: JSON.stringify(usersToPost),
+    });
+    const data = await response.json();
+    console.log("Post a ReqRes", data);
+};
 
-postRequestToReqres()
+postRequestToReqres();
+
+const getUserJsonServer = async () => {
+    const response = await fetch("http://localhost:3000/users");
+    const data = await response.json();
+    console.log("data", data);
+};
+
+getUserJsonServer();
+
+// Comenzando con Persistencia de datos - Local Storage
+
+// //Para obtener el valor de una key en el local storage utilizamos el método getItem() y como parámetro le pasamos la key que queremos obtener
+// const usernameInLocalStorage = localStorage.getItem("username")
+// console.log("usernameInLocalStorage", usernameInLocalStorage)
+
+// const tokenInLocalStorage = localStorage.getItem("token")
+// console.log("tokenInLocalStorage", tokenInLocalStorage)
+
+// // Para borrar un valor del local storage utilizamos el metodo removeItem() y como parámetro le pasamos la key que queremos borrar
+// localStorage.removeItem("password")
+
+// // Para borrar todos los valores del local storage utilizamos el método clear()
+// localStorage.clear()
+
+// Para guardar un valor en el local storage utilizamos el método setItem() y como parámetros le pasamos la key y el valor que queremos guardar
+
+const setUserInLocalStorage = () => {
+    //Acá iría la lógica asociada a esta función que además guardará info en el local storage
+    const username = "Tuki";
+    const password = "123456";
+
+    // localStorage.setItem("key1", "value1")
+    // localStorage.setItem("Esta es la key", "Este es el value")
+
+    // localStorage.setItem("username", username);
+    // localStorage.setItem("password", password);
+    
+    const user = {
+        // Si la key y el value tienen el mismo nombre, podemos utilizar la siguiente sintaxis - ECMAScript 6
+        username, 
+        password
+    }
+    
+    console.log("user", user)
+    localStorage.setItem("user", JSON.stringify(user))
+    // {"username":"Tuki","password":"123456"}
+    
+}
+
+setUserInLocalStorage()
+
+
+const getUserFromLocalStorage = () => {
+    const username = localStorage.getItem("username")
+    const password = localStorage.getItem("password")
+    const user = JSON.parse(localStorage.getItem("user"));
+
+    console.log("username", username)
+    console.log("password", password)
+    console.log("user", user)
+}
+getUserFromLocalStorage()
+
+
+
+const setObjectInLocalStorage = () => {}
